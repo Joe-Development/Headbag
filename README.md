@@ -35,4 +35,12 @@ a pretty cool headbag script i made with Sounds if you like it star the repo
 
 ---
 
+## Development Exports ( Client Side )
+
+```lua
+exports['headbag']:ForceHeadbag('on') -- Enables the headbag effect
+exports['headbag']:ForceHeadbag('off') -- Disables the headbag effect
+```
+
+
 
