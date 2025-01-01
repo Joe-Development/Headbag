@@ -1,0 +1,22 @@
+.fullscreen {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 13;
+}
+
+.headbag {
+    z-index: 12;
+}
