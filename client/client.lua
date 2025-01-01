@@ -88,8 +88,8 @@ local types = {
 }
 
 function ForceHeadbag(type)
-    if not types[type] then
-        return print("Invalid type passed for function ForceHeadbag {`on`, `off`}")
+    if type ~= "off" and type ~= "on" then
+        return print(string.format("Invalid type passed for function ForceHeadbag {%s, %s}", "on", "off"))
     end
 
     showHeadbag(types[type])
