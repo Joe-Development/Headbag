@@ -43,7 +43,7 @@ exports['headbag']:ForceHeadbag('off') -- Disables the headbag effect
 
 -- To detect if its on or off
 
-exports['headbag']:GetHeadbagStatus() -- returns true or "false
+exports['headbag']:GetHeadbagStatus() -- returns true or false
 ```
 
 
