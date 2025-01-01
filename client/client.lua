@@ -95,7 +95,13 @@ function ForceHeadbag(type)
     showHeadbag(types[type])
 end
 
+function GetHeadbagStatus()
+    return LocalPlayer.state.headbag == "true"
+end
+
 exports('ForceHeadbag', ForceHeadbag)
+
+exports('GetHeadbagStatus', GetHeadbagStatus)
 
 AddEventHandler('onResourceStop', function(resourceName)
     if resourceName == GetCurrentResourceName() then
