@@ -43,7 +43,7 @@ exports['headbag']:ForceHeadbag('off') -- Disables the headbag effect
 
 -- To detect if its on or off
 
-LocalPlayer.state.headbag -- return "true" or "false"
+LocalPlayer.state.headbag -- returns "true" or "false"
 ```
 
 
