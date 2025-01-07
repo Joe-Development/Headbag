@@ -24,7 +24,8 @@ files {
     'html/index.html',
     'html/js/script.js',
     'html/css/style.css',
-    'html/img/*'
+    'html/img/*',
+    'html/audio/headbag.mp3'
 }
 
 dependency 'ox_lib'
