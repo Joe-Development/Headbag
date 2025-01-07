@@ -3,7 +3,7 @@ window.addEventListener('message', function(event) {
     if (data.action === 'headbag') {
         const displayValue = data.state ? 'block' : 'none';
 
-        const audio = new Audio(data.state ? 'https://files.catbox.moe/ath9jo.mp3' : 'https://files.catbox.moe/ath9jo.mp3');
+        const audio = new Audio('./audio/headbag.mp3');
         audio.volume = 0.10;
         audio.play();
 
