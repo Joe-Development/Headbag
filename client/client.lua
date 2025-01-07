@@ -18,7 +18,7 @@ AddEventHandler('jd-headbag:downstream', function()
 
     if toggled then
         HeadbagEntity = CreateObject(GetHashKey("prop_money_bag_01"), 0, 0, 0, true, true, true)
-        AttachEntityToEntity(HeadbagEntity, GetPlayerPed(-1), GetPedBoneIndex(GetPlayerPed(-1), 12844), 0.22, 0.04, 0, 0, 270.0, 60.0, true, true, false, true, 1, true)
+        AttachEntityToEntity(HeadbagEntity, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 12844), 0.22, 0.04, 0, 0, 270.0, 60.0, true, true, false, true, 1, true)
     else
         DeleteEntity(HeadbagEntity)
         SetEntityAsNoLongerNeeded(HeadbagEntity)
@@ -58,7 +58,7 @@ RegisterCommand("headbag", function()
         distance = distance,
         maxDist = maxDist
     })
-end)
+end, false)
 
 function GetClosestPlayer(ignoreSelf)
     local players = GetActivePlayers()
@@ -67,14 +67,14 @@ function GetClosestPlayer(ignoreSelf)
     local plyPed = PlayerPedId()
     local plyCoords = GetEntityCoords(plyPed)
 
-    for _, player in ipairs(players) do
-        local targetPed = GetPlayerPed(player)
+    for i = 1, #players do
+        local targetPed = GetPlayerPed(players[i])
         if not ignoreSelf or targetPed ~= plyPed then
             local targetCoords = GetEntityCoords(targetPed)
             local distance = #(plyCoords - targetCoords)
             if distance < closestDistance then
                 closestDistance = distance
-                closestPlayer = player
+                closestPlayer = players[i]
             end
         end
     end
