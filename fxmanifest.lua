@@ -2,7 +2,7 @@ fx_version 'cerulean'
 games { 'gta5' }
 author 'JoeV2@Freech\'s Development'
 description 'A Simple Optimized Headbag Script for standalone servers'
-version '1.0.0'
+version '1.1.0'
 lua54 'yes'
 
 ui_page 'html/index.html'
