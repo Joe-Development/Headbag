@@ -46,5 +46,5 @@ exports['headbag']:ForceHeadbag('off') -- Disables the headbag effect
 exports['headbag']:GetHeadbagStatus() -- returns true or false
 ```
 
-
-
+## Screenshot(s)
+![Image](https://github.com/user-attachments/assets/f43079f6-5676-4e1f-b583-97ba5d2b9242)
