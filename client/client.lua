@@ -17,8 +17,8 @@ AddEventHandler('jd-headbag:downstream', function()
     toggled = not toggled
 
     if toggled then
-        HeadbagEntity = CreateObject(GetHashKey("prop_money_bag_01"), 0, 0, 0, true, true, true)
-        AttachEntityToEntity(HeadbagEntity, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 12844), 0.22, 0.04, 0, 0, 270.0, 60.0, true, true, false, true, 1, true)
+        HeadbagEntity = CreateObject(GetHashKey("prop_headbag"), 0, 0, 0, true, true, true)
+        AttachEntityToEntity(HeadbagEntity, PlayerPedId(), GetPedBoneIndex(PlayerPedId(), 12844), 0.26, 0.02, 0, 0, 270.0, 75.0, true, true, false, true, 1, true)
     else
         DeleteEntity(HeadbagEntity)
         SetEntityAsNoLongerNeeded(HeadbagEntity)

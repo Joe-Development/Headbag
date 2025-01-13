@@ -29,3 +29,5 @@ files {
 }
 
 dependency 'ox_lib'
+
+data_file 'DLC_ITYP_REQUEST' 'stream/prop_headbag.ytyp'
