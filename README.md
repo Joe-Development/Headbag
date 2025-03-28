@@ -4,6 +4,10 @@ a pretty cool headbag script i made with Sounds if you like it star the repo
 
 ---
 
+Support Discord -> https://discord.gg/3wdq48EY
+
+---
+
 ## Features
 - **Easy to Use**: Simple Command usage.
 - **Customizable**: Modify the configuration to suit your server's needs.
