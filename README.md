@@ -4,7 +4,7 @@ a pretty cool headbag script i made with Sounds if you like it star the repo
 
 ---
 
-Support Discord -> https://discord.gg/3wdq48EY
+[Discord Server](https://discord.gg/TZFPF2n5Ys)
 
 ---
 
