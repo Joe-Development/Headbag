@@ -18,6 +18,7 @@ Config.locales = {
         ["permission:denied:description"] = "You don't have permission",
         ["headbag:title"] = "Headbag",
         ["headbag:no:player:nearby"] = "No player nearby",
-        ["headbag:invalid:type"] = "Invalid type passed for function ForceHeadbag {%s, %s}"
+        ["headbag:invalid:type"] = "Invalid type passed for function ForceHeadbag {%s, %s}",
+        ["exploit:triggered"] = "Exploiting Headbag Event"
     }
 }
