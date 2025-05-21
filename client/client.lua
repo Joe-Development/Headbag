@@ -32,8 +32,8 @@ RegisterCommand("headbag", function()
         local ace = lib.callback.await('jd-headbag:check', false, Config.AcePermission)
         if not ace then
             lib.notify({
-                title = "Permission Denied",
-                description = "You don't have permission",
+                title = Config.locales["permission:denied:title"],
+                description = Config.locales["permission:denied:description"],
                 type = "error",
                 duration = 3000,
                 position = "center-right"
@@ -44,8 +44,8 @@ RegisterCommand("headbag", function()
 
     if distance > maxDist then
         lib.notify({
-            title = "Headbag",
-            description = "No player nearby",
+            title = Config.locales["headbag:title"],
+            description = Config.locales["headbag:no:player:nearby"],
             type = "error",
             duration = 3000,
             position = "center-right"
@@ -89,7 +89,7 @@ local types = {
 
 function ForceHeadbag(type)
     if type ~= "off" and type ~= "on" then
-        return print(string.format("Invalid type passed for function ForceHeadbag {%s, %s}", "on", "off"))
+        return print(string.format(Config.locales["headbag:invalid:type"], "on", "off"))
     end
 
     showHeadbag(types[type])

@@ -6,7 +6,9 @@ lib.callback.register('jd-headbag:getConfig', function(source)
     return {
         useAce = Config.useAce,
         acePermission = Config.AcePermission,
-        maxDistance = Config.maxDistance
+        maxDistance = Config.maxDistance,
+        defaultLocale = Config.defaultLocale,
+        locales = Config.locales[Config.defaultLocale]
     }
 end)
 
