@@ -1,5 +1,5 @@
 lib.callback.register('jd-headbag:check', function(source, ace)
-    return IsPlayerAceAllowed(source, ace)
+    return IsPlayerAceAllowed(source, Config.AcePermission)
 end)
 
 lib.callback.register('jd-headbag:getConfig', function(source)
