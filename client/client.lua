@@ -32,7 +32,7 @@ RegisterCommand("headbag", function()
     local ped, distance = GetClosestPlayer(true)
 
     if Config.useAce then
-        local ace = lib.callback.await('jd-headbag:check', false, Config.AcePermission)
+        local ace = lib.callback.await('jd-headbag:check', false)
         if not ace then
             lib.notify({
                 title = Config.locales["permission:denied:title"],
