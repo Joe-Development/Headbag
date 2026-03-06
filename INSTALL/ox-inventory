@@ -4,5 +4,4 @@
         stack = false,
         close = false,
         decay = true,
-        degrade = 20160
     },
