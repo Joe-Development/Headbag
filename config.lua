@@ -6,19 +6,12 @@ Config.AcePermission = "jd.headbag" -- [ACE] Only works if useAce is true
 
 Config.maxDistance = 2.0
 
+Config.useCommand = false       -- Enable or disable /headbag command
+Config.useOxTarget = true       -- Enable or disable ox_target on players
+Config.headbagItem = "headbag"  -- Inventory item name, set this to "" to disable the item requirement
+
 Config.exploitTriggered = function (ped, reason)
     DropPlayer(ped, reason)
 end
 
 Config.defaultLocale = "en"
-
-Config.locales = {
-    ["en"] = {
-        ["permission:denied:title"] = "Permission Denied",
-        ["permission:denied:description"] = "You don't have permission",
-        ["headbag:title"] = "Headbag",
-        ["headbag:no:player:nearby"] = "No player nearby",
-        ["headbag:invalid:type"] = "Invalid type passed for function ForceHeadbag {%s, %s}",
-        ["exploit:triggered"] = "Exploiting Headbag Event"
-    }
-}
