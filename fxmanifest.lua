@@ -8,7 +8,7 @@ lua54 'yes'
 ui_page 'html/index.html'
 
 shared_scripts {
-    '@ox_lib/init.lua'
+    'shared/bridge.lua'
 }
 
 client_scripts {
@@ -28,6 +28,5 @@ files {
     'html/audio/headbag.mp3'
 }
 
-dependency 'ox_lib'
-
+-- Dependencies for optional features: ox_lib, ox_target, ox_inventory
 data_file 'DLC_ITYP_REQUEST' 'stream/prop_headbag.ytyp'

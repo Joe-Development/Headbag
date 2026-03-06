@@ -1,4 +1,4 @@
-local Config = lib.callback.await('jd-headbag:getConfig', false)
+local Config = Bridge.callbackAwait('jd-headbag:getConfig')
 local toggled = false
 local maxDist = Config.maxDistance
 local HeadbagEntity = nil
@@ -38,7 +38,7 @@ end)
 
 RegisterNetEvent('jd-headbag:noItem')
 AddEventHandler('jd-headbag:noItem', function()
-    lib.notify({
+    Bridge.notify({
         title = Config.locales["headbag:title"],
         description = Config.locales["headbag:no:item"],
         type = "error",
@@ -52,9 +52,9 @@ if Config.useCommand then
         local ped, distance = GetClosestPlayer(true)
 
         if Config.useAce then
-            local ace = lib.callback.await('jd-headbag:check', false)
+            local ace = Bridge.callbackAwait('jd-headbag:check')
             if not ace then
-                lib.notify({
+                Bridge.notify({
                     title = Config.locales["permission:denied:title"],
                     description = Config.locales["permission:denied:description"],
                     type = "error",
@@ -66,7 +66,7 @@ if Config.useCommand then
         end
 
         if distance > maxDist then
-            lib.notify({
+            Bridge.notify({
                 title = Config.locales["headbag:title"],
                 description = Config.locales["headbag:no:player:nearby"],
                 type = "error",
@@ -85,7 +85,7 @@ if Config.useCommand then
 end
 
 -- Client side implementation of ox_target, adds options to apply/remove headbag when looking at a player
-if Config.useOxTarget then
+if Config.useOxTarget and Bridge.hasOxTarget then
     exports.ox_target:addGlobalPlayer({
         {
             name = 'headbag_apply',
@@ -153,7 +153,7 @@ function ForceHeadbag(type)
 end
 
 function GetHeadbagStatus()
-    return Player(cache.serverId).state.headbag == "true"
+    return Player(GetPlayerServerId(PlayerId())).state.headbag == "true"
 end
 
 exports('ForceHeadbag', ForceHeadbag)

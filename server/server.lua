@@ -16,11 +16,11 @@ print(('Loaded locale "%s"'):format(Config.defaultLocale))
 
 local headbagStates = {}
 
-lib.callback.register('jd-headbag:check', function(src)
+Bridge.registerCallback('jd-headbag:check', function(src)
     return IsPlayerAceAllowed(src, Config.AcePermission)
 end)
 
-lib.callback.register('jd-headbag:getConfig', function(source)
+Bridge.registerCallback('jd-headbag:getConfig', function(source)
     return {
         useAce = Config.useAce,
         acePermission = Config.AcePermission,
@@ -50,7 +50,7 @@ AddEventHandler('jd-headbag:upstream', function(data)
 
     if applying then
         -- Applying headbag: remove item from the applier
-        if Config.headbagItem and Config.headbagItem ~= "" then
+        if Config.headbagItem and Config.headbagItem ~= "" and Bridge.hasOxInventory then
             local removed = exports.ox_inventory:RemoveItem(source, Config.headbagItem, 1)
             if not removed then
                 TriggerClientEvent("jd-headbag:noItem", source)
@@ -59,7 +59,7 @@ AddEventHandler('jd-headbag:upstream', function(data)
         end
     else
         -- Removing headbag: return item to whoever is removing it
-        if Config.headbagItem and Config.headbagItem ~= "" then
+        if Config.headbagItem and Config.headbagItem ~= "" and Bridge.hasOxInventory then
             exports.ox_inventory:AddItem(source, Config.headbagItem, 1)
         end
     end
