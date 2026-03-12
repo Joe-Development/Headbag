@@ -19,7 +19,6 @@ else
 end
 
 if IsDuplicityVersion() then
-
     local callbacks = {}
 
     if Bridge.oxLib then
@@ -75,9 +74,9 @@ else
         end
 
         function Bridge.notify(data)
-            BeginTextCommandThefeedPost('STRING')
-            AddTextComponentSubstringPlayerName(data.description or data.title or '')
-            EndTextCommandThefeedPost(false)
+            BeginTextCommandThefeedPost("STRING")
+            AddTextComponentSubstringPlayerName(data.title .. "\n" .. data.description)
+            EndTextCommandThefeedPostTicker(false, true)
         end
     end
 
