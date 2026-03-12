@@ -28,6 +28,7 @@ Bridge.registerCallback('jd-headbag:getConfig', function(source)
         locales = Locales,
         useCommand = Config.useCommand,
         useOxTarget = Config.useOxTarget,
+        useInventory = Config.useInventory,
         headbagItem = Config.headbagItem,
     }
 end)
@@ -49,8 +50,7 @@ AddEventHandler('jd-headbag:upstream', function(data)
     local applying = not currentState
 
     if applying then
-        -- Applying headbag: remove item from the applier
-        if Config.headbagItem and Config.headbagItem ~= "" and Bridge.hasOxInventory then
+        if Config.useInventory and Config.headbagItem and Config.headbagItem ~= "" and Bridge.hasOxInventory then
             local removed = exports.ox_inventory:RemoveItem(source, Config.headbagItem, 1)
             if not removed then
                 TriggerClientEvent("jd-headbag:noItem", source)
@@ -58,8 +58,7 @@ AddEventHandler('jd-headbag:upstream', function(data)
             end
         end
     else
-        -- Removing headbag: return item to whoever is removing it
-        if Config.headbagItem and Config.headbagItem ~= "" and Bridge.hasOxInventory then
+        if Config.useInventory and Config.headbagItem and Config.headbagItem ~= "" and Bridge.hasOxInventory then
             exports.ox_inventory:AddItem(source, Config.headbagItem, 1)
         end
     end
@@ -69,7 +68,6 @@ AddEventHandler('jd-headbag:upstream', function(data)
     TriggerClientEvent("jd-headbag:downstream", ped)
 end)
 
--- Clean up state when player disconnects
 AddEventHandler('playerDropped', function()
     headbagStates[source] = nil
 end)

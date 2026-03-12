@@ -84,7 +84,6 @@ if Config.useCommand then
     end, false)
 end
 
--- Client side implementation of ox_target, adds options to apply/remove headbag when looking at a player
 if Config.useOxTarget and Bridge.hasOxTarget then
     exports.ox_target:addGlobalPlayer({
         {
