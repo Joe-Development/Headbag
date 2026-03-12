@@ -1,0 +1,11 @@
+{
+    "permission:denied:title": "Permission Denied",
+    "permission:denied:description": "You don't have permission",
+    "headbag:title": "Headbag",
+    "headbag:no:player:nearby": "No player nearby",
+    "headbag:invalid:type": "Invalid type passed for function ForceHeadbag {%s, %s}",
+    "exploit:triggered": "Exploiting Headbag Event",
+    "headbag:apply": "Apply Headbag",
+    "headbag:remove": "Remove Headbag",
+    "headbag:no:item": "You don't have a headbag"
+}

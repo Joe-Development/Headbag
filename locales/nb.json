@@ -1,0 +1,11 @@
+{
+    "permission:denied:title": "Tilgang nektet",
+    "permission:denied:description": "Du har ikke tillatelse",
+    "headbag:title": "Hodebag",
+    "headbag:no:player:nearby": "Ingen spiller i nærheten",
+    "headbag:invalid:type": "Ugyldig type sendt til ForceHeadbag {%s, %s}",
+    "exploit:triggered": "Utnytter Headbag-hendelse",
+    "headbag:apply": "Sett på hodebag",
+    "headbag:remove": "Ta av hodebag",
+    "headbag:no:item": "Du har ikke en hodebag"
+}

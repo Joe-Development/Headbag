@@ -1,14 +1,22 @@
-local Config = lib.callback.await('jd-headbag:getConfig', false)
+local Config = Bridge.callbackAwait('jd-headbag:getConfig')
 local toggled = false
 local maxDist = Config.maxDistance
 local HeadbagEntity = nil
 
 local function showHeadbag(boolean)
-    LocalPlayer.state.headbag = (boolean and "true" or "false")
     SendNuiMessage(json.encode({
         action = "headbag",
         state = boolean
     }))
+end
+
+local function applyToTarget(targetServerId, targetEntity)
+    local dist = #(GetEntityCoords(PlayerPedId()) - GetEntityCoords(targetEntity))
+    TriggerServerEvent("jd-headbag:upstream", {
+        ped = targetServerId,
+        distance = dist,
+        maxDist = maxDist
+    })
 end
 
 RegisterNetEvent('jd-headbag:downstream')
@@ -28,40 +36,86 @@ AddEventHandler('jd-headbag:downstream', function()
     end
 end)
 
-RegisterCommand("headbag", function()
-    local ped, distance = GetClosestPlayer(true)
+RegisterNetEvent('jd-headbag:noItem')
+AddEventHandler('jd-headbag:noItem', function()
+    Bridge.notify({
+        title = Config.locales["headbag:title"],
+        description = Config.locales["headbag:no:item"],
+        type = "error",
+        duration = 3000,
+        position = "center-right"
+    })
+end)
 
-    if Config.useAce then
-        local ace = lib.callback.await('jd-headbag:check', false)
-        if not ace then
-            lib.notify({
-                title = Config.locales["permission:denied:title"],
-                description = Config.locales["permission:denied:description"],
+if Config.useCommand then
+    RegisterCommand("headbag", function()
+        local ped, distance = GetClosestPlayer(true)
+
+        if Config.useAce then
+            local ace = Bridge.callbackAwait('jd-headbag:check')
+            if not ace then
+                Bridge.notify({
+                    title = Config.locales["permission:denied:title"],
+                    description = Config.locales["permission:denied:description"],
+                    type = "error",
+                    duration = 3000,
+                    position = "center-right"
+                })
+                return
+            end
+        end
+
+        if distance > maxDist then
+            Bridge.notify({
+                title = Config.locales["headbag:title"],
+                description = Config.locales["headbag:no:player:nearby"],
                 type = "error",
                 duration = 3000,
                 position = "center-right"
-            })
+             })
             return
         end
-    end
 
-    if distance > maxDist then
-        lib.notify({
-            title = Config.locales["headbag:title"],
-            description = Config.locales["headbag:no:player:nearby"],
-            type = "error",
-            duration = 3000,
-            position = "center-right"
-         })
-        return
-    end
+        TriggerServerEvent("jd-headbag:upstream", {
+            ped = (GetPlayerServerId(ped) and GetPlayerServerId(ped) or -1),
+            distance = distance,
+            maxDist = maxDist
+        })
+    end, false)
+end
 
-    TriggerServerEvent("jd-headbag:upstream", {
-        ped = (GetPlayerServerId(ped) and GetPlayerServerId(ped) or -1),
-        distance = distance,
-        maxDist = maxDist
+-- Client side implementation of ox_target, adds options to apply/remove headbag when looking at a player
+if Config.useOxTarget and Bridge.hasOxTarget then
+    exports.ox_target:addGlobalPlayer({
+        {
+            name = 'headbag_apply',
+            label = Config.locales["headbag:apply"],
+            icon = 'fas fa-mask',
+            distance = Config.maxDistance,
+            items = Config.headbagItem ~= "" and Config.headbagItem or nil,
+            canInteract = function(entity)
+                return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.headbag ~= "true"
+            end,
+            onSelect = function(data)
+                local targetServerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity))
+                applyToTarget(targetServerId, data.entity)
+            end
+        },
+        {
+            name = 'headbag_remove',
+            label = Config.locales["headbag:remove"],
+            icon = 'fas fa-eye',
+            distance = Config.maxDistance,
+            canInteract = function(entity)
+                return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.headbag == "true"
+            end,
+            onSelect = function(data)
+                local targetServerId = GetPlayerServerId(NetworkGetPlayerIndexFromPed(data.entity))
+                applyToTarget(targetServerId, data.entity)
+            end
+        }
     })
-end, false)
+end
 
 function GetClosestPlayer(ignoreSelf)
     local players = GetActivePlayers()
@@ -99,7 +153,7 @@ function ForceHeadbag(type)
 end
 
 function GetHeadbagStatus()
-    return LocalPlayer.state.headbag == "true"
+    return Player(GetPlayerServerId(PlayerId())).state.headbag == "true"
 end
 
 exports('ForceHeadbag', ForceHeadbag)

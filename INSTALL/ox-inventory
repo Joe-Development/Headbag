@@ -1,0 +1,7 @@
+    ['headbag'] = {
+        label = "Headbag",
+        weight = 100,
+        stack = false,
+        close = false,
+        decay = true,
+    },
