@@ -91,7 +91,7 @@ if Config.useOxTarget and Bridge.hasOxTarget then
             label = Config.locales["headbag:apply"],
             icon = 'fas fa-mask',
             distance = Config.maxDistance,
-            items = Config.headbagItem ~= "" and Config.headbagItem or nil,
+            items = Config.useInventory and Config.headbagItem ~= "" and Config.headbagItem or nil,
             canInteract = function(entity)
                 return Player(GetPlayerServerId(NetworkGetPlayerIndexFromPed(entity))).state.headbag ~= "true"
             end,
