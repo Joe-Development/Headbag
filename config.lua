@@ -8,8 +8,8 @@ Config.maxDistance = 2.0
 
 Config.useCommand = true       -- Enable or disable /headbag command
 
-Config.useOxTarget = true       -- Enable or disable ox_target on players
-Config.useInventory = true      -- Enable or disable ox_inventory integration (if false, no items will be taken/given)
+Config.useOxTarget = false       -- Enable or disable ox_target on players
+Config.useInventory = false      -- Enable or disable ox_inventory integration (if false, no items will be taken/given)
 
 Config.headbagItem = "headbag"  -- Inventory item name, set this to "" to disable the item requirement
 
